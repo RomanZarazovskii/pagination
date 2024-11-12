@@ -8,6 +8,7 @@ body {
   padding: 15px;
   border: 1px solid grey;
   margin-right: 10px;
+  margin-bottom: 30px;
 }
 
 .form__button {
@@ -30,4 +31,18 @@ body {
   margin-right: auto;
   margin-top: 30px;
   display: block;
+}
+
+.item {
+  width: 250px;
+  height: 450px;
+  overflow: hidden;
+}
+
+.articles__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
 }

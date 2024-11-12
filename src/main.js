@@ -11,10 +11,14 @@ btn.addEventListener('click', onLoadMore);
 
 function onSearch(e) {
   e.preventDefault();
+  // clearList();
   newsApiService.query = e.currentTarget.elements.query.value;
 
   newsApiService.resetPage();
-  newsApiService.fetchArticles().then(renderNews);
+  newsApiService.fetchArticles().then(articles => {
+    clearList();
+    renderNews(articles);
+  });
 }
 
 function onLoadMore() {
@@ -23,8 +27,11 @@ function onLoadMore() {
 
 function renderNews(articles) {
   const markUp = articles
+    // .filter(article => {
+    //   article.title !== '[Removed]' && article.description !== '[Removed]';
+    // })
     .map(article => {
-      return `<li>
+      return `<li class="item">
 <a href="${article.url}" target="_blank" rel="noopener noreferrer">
 <article>
 <img src="${article.urlToImage}" alt="" width="480">
@@ -37,4 +44,8 @@ function renderNews(articles) {
     })
     .join('');
   list.insertAdjacentHTML('beforeend', markUp);
+}
+
+function clearList() {
+  list.innerHTML = '';
 }
